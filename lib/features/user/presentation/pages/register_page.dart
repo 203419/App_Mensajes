@@ -30,32 +30,82 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Register'),
-      ),
-      body: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            TextField(
-              controller: _emailController,
-              decoration: InputDecoration(
-                labelText: 'Email',
-              ),
+      body: SingleChildScrollView(
+        child: Container(
+          color: Color(0xFF2C3C4D),
+          child: Padding(
+            padding: EdgeInsets.all(16.0),
+            child: Column(
+              children: [
+                const SizedBox(height: 60),
+                const Text('Registro',
+                    style: TextStyle(fontSize: 27, color: Colors.white)),
+                const SizedBox(height: 60),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 15),
+                  child: TextField(
+                    controller: _emailController,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(15)),
+                      ),
+                      labelText: 'Correo electrónico',
+                      labelStyle: TextStyle(
+                        color: Color.fromARGB(255, 186, 179, 179),
+                        fontSize: 14,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 25),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 15),
+                  child: TextField(
+                    controller: _passwordController,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(15)),
+                      ),
+                      labelText: 'Contraseña',
+                      labelStyle: TextStyle(
+                        color: Color.fromARGB(255, 186, 179, 179),
+                        fontSize: 14,
+                      ),
+                      suffixIcon: Icon(
+                        Icons.visibility,
+                        color: Color.fromARGB(255, 186, 179, 179),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 50.0),
+                Padding(
+                  padding: EdgeInsets.only(top: 10, bottom: 0),
+                  child: ElevatedButton(
+                    onPressed: _register,
+                    child: Text('Sign Up',
+                        style: TextStyle(fontSize: 17, color: Colors.white)),
+                    style: ElevatedButton.styleFrom(
+                      primary: Color(0xFF31D843),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 60, vertical: 15),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 16.0),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pushNamed('/');
+                  },
+                  child: Text('Ya tienes cuenta? Inicia sesión'),
+                ),
+                SizedBox(height: 360),
+              ],
             ),
-            TextField(
-              controller: _passwordController,
-              decoration: InputDecoration(
-                labelText: 'Password',
-              ),
-              obscureText: true,
-            ),
-            SizedBox(height: 16.0),
-            ElevatedButton(
-              onPressed: _register,
-              child: Text('Register'),
-            ),
-          ],
+          ),
         ),
       ),
     );
